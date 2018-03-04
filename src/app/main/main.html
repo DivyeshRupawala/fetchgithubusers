@@ -1,0 +1,51 @@
+<div class="container">
+
+    <h1 class="text-center">Github Users List and Repolist</h1>
+
+  <div class="text-center search-box"> 
+    <input type="text" placeholder="Search Box" ng-model="search">
+    <button ng-click="onSearch()" style="padding: 5px;background: burlywood;color: white;">Search</button>
+  </div>
+
+  <!-- Table Container Container -->
+  <div class="table-body">     
+      <table class="table table-bordered rateTable">
+        <tbody>
+           <thead>
+                <tr>
+                  <th>Icon</th>
+                  <th>User Name</th>                  
+                </tr>
+              </thead>
+            <tr 
+              class="highlight" 
+              ng-repeat="d in dataList"              
+              ng-click="onClickUser(d)" 
+              style="cursor:pointer;"
+              ng-class="{'selectedCss' : d.login == userDetails.login}">
+                <td><img with="50px" height="50px" ng-src="{{d.avatar_url}}"/></td>
+                <td>{{::d.login}}</td>                
+            </tr>
+        </tbody>
+    </table>
+  </div> 
+
+  <div>
+    <h1 class="text-center">User Details</h1>
+    <div>
+      <img style="float:left;" with="200px" height="200px" ng-src="{{userDetails.avatar_url}}"/>
+      <div style="float:left;margin-left:20px;">
+        <label>Name : </label> {{userDetails.name}}<br/>
+        <label>Location : </label> {{userDetails.location}} <br/>
+        <label>Login ID :</label> {{userDetails.login}} <br/>
+        <label>Public Repos : </label> {{userDetails.public_repos}} <br/>
+        <label>Blog : </label> <a href="{{userDetails.blog}}" target="_blank"> {{userDetails.blog}}</a> <br/>  
+        <label>Repos Link : </label> <a href="{{userDetails.repos_url}}" target="_blank"> {{userDetails.repos_url}}</a> <br/> 
+        <ul style="height: 100px;overflow-y: scroll;">
+          <li ng-repeat="r in userDetails.repoList">{{r.name}}</li>
+        </ul>
+              
+      </div>
+    </div>
+  </div> 
+</div> <!-- END Continer -->
